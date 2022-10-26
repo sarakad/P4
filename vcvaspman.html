@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title> </title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/jquery.scrollgress.min.js"></script>
+		<script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/jquery.slidertron.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-xlarge.css" />
+		</noscript>
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</head>
+    
+	<body>
+
+		<!-- Header -->
+                <header id="header" >
+				<h1><a href="index.html">Kadkhodaei's Research Group at University of Illinois at Chicago (UIC)<span></span> </a></h1> <!--by Html5webtemplates.co.uk-->
+				
+		</header>
+        <header class="majorcenter">
+					<h2>Piecewise Polynomial Potential Partitioning (P<sup>4</sup>)</h2>  
+            
+				</header>
+
+
+		<!-- Main -->
+			<section id="main" class="wrapper style1">
+			
+				<div class="container">
+					<div class="row 150%">
+						<div class="3u 12u$(2)">
+						
+							<!-- Sidebar -->
+								<section id="sidebar">
+									<section>
+                                        
+                                            <ul class="alt">
+                                                <li> <a href="download.html">Download</a></li>
+                                                <li> <a href="acknowledge.html">Acknowledgement and Citation</a></li>
+                                                <li> <a href="license.html">License and Agreements</a></li>
+                                                <li> <a href="installation.html"> Installation</a></li>
+                                                <li> <a href="p4.html">Tutorial</a></li>
+
+                                                <li><a href="#"> Manual pages</a>
+                                                    <ul class="alt">
+                                                        <li><a href="auglatman.html"> auglat</a></li>
+                                                        <li><a href="genrndstrman.html"> genrndstr</a></li>
+                                                        <li><a href="vcminman.html"> vcminimizer</a></li>
+                                                        <li><a href="vcvaspman.html"> vcrelax_vasp</a></li>
+                                                        <li><a href="mcmcman.html"> mcmc</a></li>
+                                                    </ul>
+                                                </li>
+                                                 <li><a href="#"> Command line options</a>
+                                                    <ul class="alt">
+                                                        <li><a href="auglatcommand.html"> auglat</a></li>
+                                                        <li><a href="genrndstrcommand.html"> genrndstr</a></li>
+                                                        <li><a href="vcmincommand.html"> vcminimizer</a></li>
+                                                        <li><a href="vcvaspcommand.html"> vcrelax_vasp</a></li>
+                                                        <li><a href="mcmccommand.html"> mcmc</a></li>
+                                                    </ul>
+                                                 </li>
+                                            </ul>
+									</section>
+								</section>
+
+						</div>
+						<div class="9u 12u$(2) important(2)">
+						
+							<!-- Content -->
+								<section id="content">
+                                    <h2>vcrelax_vasp </h2>	
+                                    <p>
+This command implements the "Voronoi Cell Minimization" as part of the "Piecewise Polynomial Potential Partitioning" method introduced <a href="https://journals.aps.org/prb/abstract/10.1103/PhysRevB.95.064101"> here.</a><br/>
+<br/>
+It finds the atomic geometry of the minimum on the ab initio energy surface confined to the Voronoi tesselation of the configuration space of a structure that is mechanically unstable. It interfaces with a first-priciples code to investigate the ab initio energy surface.<br/>
+In a nutshell: the method finds either a local minimum (for a mechanically stable phase)
+or the absolute minimum on the boundary of the Voronoi cell that defines the vicinity of an atomic configuration on the lattice (for a mechanically unstable phase).<br/>
+<br/>
+This command does the following:<br/>
+Relax the structure (in str.in or str.out) confined in the Voronoi cell generated by the lattice sites in the augmented lattice to create str_relax.out.<br/>
+<br/>
+-> Input files:<br/>
+1) <b>lat.in</b>  : defines the augmented lattice.<br/>
+2) <b>str.in</b>  : defines the atomic structure. <br/>
+<br/>
+See "auglat" manual page for details on structure and lattice file formats. <br />
+<br/>
+-> Intermediate output files:<br/>
+As the optimization progresses, the current status is written to various files:<br/>
+1) <b>str_cur.out</b> : defines the currect atomic geometry in the minimization process. Same format as in str.in.<br/>
+2) <b>force_cur.out</b> : defines the forces acting on the current atomic positions (one 3d vector per line for each atom).<br/>
+<br/>
+The intermediate files can be used for the -cip option to restart an aborted or misbehaving run.<br/>
+<br/>
+-> Final output files:<br/>
+1) <b>str_relax.out</b> : defines the relaxed atomic geometry inside the Voronoi cell.<br/>
+2) <b>force_final.out</b> : defines the forces acting on the relaxed structure (one 3d vector per line for each atom).<br/>
+3) <b>hessian.out</b> : defines the matrix of negative second-order partial derivatives of energy for the relaxed structure.  <br/>
+3) <b>eigenvalues.out</b> : defines the eigenvalues of the matrix in hessian.out.  <br/>
+3) <b>eigenvectors.out</b> : defines the eigenvectors of the matrix in hessian.out. Each line is an eigenvector. <br/>                                                                                                                   
+                                    </p>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+                                </section>
+								
+						</div>
+					</div>
+				</div>
+			</section>
+			
+		<!-- Footer -->
+			<footer id="footer">
+								<span class="copyright">
+					&copy; Copyright. Computational Materials Research Lab (CMRL). <!-- Design by <a target="_blank" href="http://www.html5webtemplates.co.uk">Responsive Web Templates</a> -->
+				</span>
+			</footer>
+
+	</body>
+</html>

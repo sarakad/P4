@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title> </title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/jquery.scrollgress.min.js"></script>
+		<script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/jquery.slidertron.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-xlarge.css" />
+		</noscript>
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</head>
+    
+	<body>
+
+		<!-- Header -->
+		        <header id="header" >
+				<h1><a href="index.html">Kadkhodaei's Research Group at University of Illinois at Chicago (UIC)<span></span> </a></h1> <!--by Html5webtemplates.co.uk-->
+				
+		</header>
+        
+        <header class="majorcenter">
+					<h2>Piecewise Polynomial Potential Partitioning (P<sup>4</sup>)</h2>  
+            
+				</header>
+
+
+		<!-- Main -->
+			<section id="main" class="wrapper style1">
+			
+				<div class="container">
+					<div class="row 150%">
+						<div class="3u 12u$(2)">
+						
+							<!-- Sidebar -->
+								<section id="sidebar">
+									<section>
+                                        
+                                            <ul class="alt">
+                                                <li> <a href="download.html">Download</a></li>
+                                                <li> <a href="acknowledge.html">Acknowledgement and Citation</a></li>
+                                                <li> <a href="license.html">License and Agreements</a></li>
+                                                <li> <a href="installation.html"> Installation</a></li>
+                                                <li> <a href="p4.html">Tutorial</a></li>
+
+                                                <li><a href="#"> Manual pages</a>
+                                                    <ul class="alt">
+                                                        <li><a href="auglatman.html"> auglat</a></li>
+                                                        <li><a href="genrndstrman.html"> genrndstr</a></li>
+                                                        <li><a href="vcminman.html"> vcminimizer</a></li>
+                                                        <li><a href="vcvaspman.html"> vcrelax_vasp</a></li>
+                                                        <li><a href="mcmcman.html"> mcmc</a></li>
+                                                    </ul>
+                                                </li>
+                                                 <li><a href="#"> Command line options</a>
+                                                    <ul class="alt">
+                                                        <li><a href="auglatcommand.html"> auglat</a></li>
+                                                        <li><a href="genrndstrcommand.html"> genrndstr</a></li>
+                                                        <li><a href="vcmincommand.html"> vcminimizer</a></li>
+                                                        <li><a href="vcvaspcommand.html"> vcrelax_vasp</a></li>
+                                                        <li><a href="mcmccommand.html"> mcmc</a></li>
+                                                    </ul>
+                                                 </li>
+                                            </ul>
+									</section>
+								</section>
+
+						</div>
+						<div class="9u 12u$(2) important(2)">
+						
+							<!-- Content -->
+								<section id="content">
+                                    <h2>mcmc </h2>	
+                                    
+                                    <p>This command performs the Monte Carlo Markov Chain (MCMC) sampling technique (via random-walk method) as part of the "Piecewise Polynomial Potential Partitioning (P<sup>4</sup>)" method introduced <a href="https://journals.aps.org/prb/abstract/10.1103/PhysRevB.95.064101"> here</a>. The goal is to obtain the vibrational free energy of a structure that is not mechanically stable. i.e. its vibrational frequencies are not all real values and there exists some imaginary frequencies associated with some phonons (vibrational states). This approach is useful for systems that exists in nature due to some entropic stabilization at high enough temperature (e.g. bcc Titanium or B2 NiTi).  </p>
+                                                                                                            
+                                    <p>
+                                   -> Input files:  <br /> 
+  <b>lat.in	</b>            The augmented lattice (see vcrelax_vasp -h for format). <br /> 
+  <b>str.in</b>             The ideal high-symmetry structure geometry (see vcrelax_vasp -h for format). <br /> 
+  <b>str_relax.out</b> 		The relaxed structure (confined to Voronoi cell). <br /> 
+  <b>force_final.out</b>  	The atomic force for the relaxed structure (one 3d vector per line for each atom). <br /> 
+  <b>hessian.out</b> 		The negative second-order partial derivatives of energy for the relaxed structure. <br /> 
+  <b>energy_relax</b>  		The energy for the relaxed structure. <br /> 
+  
+  <br /> 
+-> Final output files: <br /> 
+  <b>mcmc.log</b> 	The log file for this module. <br /> 
+  <b>fvib</b> 		The vibrational free energy for the relaxed structure.  <br /> 
+
+ <br /> 
+-> Optional output files: <br /> 
+  <b>mcmc_test.log</b>       The log file for the -test option. <br /> 
+  <b>ave_u</b>               The average internal energy for the real system (when performed using the -u option). <br /> 
+  
+  <br /> 
+See "auglat" manual page for details on structure and lattice file formats. <br />
+<br />  
+Note: The atom positions in the str.in should be the same as the lattice site positions in the augmented lattice in lat.in. Not all the lattice sites are occupied by atoms and a number of them are occupied by vacancies. <br /> 
+
+ <br /> 
+This module is often invoked after a confined relaxation procedure of the initial structure (see vcrelax_vasp -h). Performing vcrelax_vasp prior to invoking this module will automatically generate all the necessary input files for this module.  <br /> 
+
+ <br /> 
+The calculations proceed as follows:  <br /> 
+ <br /> 
+
+1) You first need to relax the atomic structure defined in str.in. In the relaxation procedure the atomic positions are confined to the Voronoi tesselation of the space, where the lattice sites defined in lat.in are used as the generators of the Voronoi tesselation (see auglat -h for more details on making an augmented lattice file). This process can be performed by runing <br/>
+ <code>
+ vcrelax_vasp -vc
+ </code>
+ <br/>
+(see vcrelax_vasp -h for more details). The relaxed structure is written in the file str_relax.out, which is an input of this module. The atomic forces and hessian for the str_relax.out are also written to force_final.out and hessian.out. This module expects all these files as input files.<br/>
+<br/>
+2) Generation of the quadrature points for adiabatic switching technique:<br/>
+    In a directory including all the aforementioned input files run the following command:<br/>
+    <code>
+    mcmc -gip -ip=[string]
+    </code>
+    <br/>
+    which generates a subdirectory for each integration point defined in the -ip file. The format of the file read by the -ip option is a pair of quadrature point abscissa and weight per line. The domain of integratio is
+    between 0 and 1. If the -ip option is not used, a 5-point Gaussian quadrature in [0 1] domain is used.<br/>
+<br/>
+3) Sampling from the canonical distribution of states on each intermediate state:<br/>
+   In each subdirectory, a new potential energy is defined for an intermediate state as a linear switching betwe   en the real state (mechancially unstable state) and a reference state (chosen to be mechanically stable), usi   ng the quadrature abscissa as the switching parameter. The reference state is defined by default as a state w   with a harmonic energy surface around the ideal configuration (defined in str.in) with a curvature value of 2   0 eV/A/A. The curvature value can be changed using the -c option. For sampling each intermediate state run th   e follwing command within each subdirectory<br/>
+   <code>
+   mcmc -r
+   </code>
+   <br/>
+   which sample the difference in the energy between the real and reference states, where states are sampled fro   canonical distribution over the interpolated energy surface. If the sampling is converged and finished succes   sfully, a "denergy" file is written to the subdirectory.<br/>
+
+   Notes:<br/>
+   It is recommended to use parallel computing in step 3. You need to compile the mpi version of the module and use 
+   <code>mpirun [options] mcmc [options]</code><br/>
+<br/>  
+3') Prior to step 3, one can determine the best mcmc parameters (such as burn-in period and gap steps) by condu     cting the folliwng command in a subdirectory<br/>
+    <code>
+    mcmc -test
+    </code>
+    <br/>
+    which provides three output files, mcmc_test.log, gap.txt and burnIn.txt. One can plot the data in gap.txt and burnIn.txt and assess the best mcmc parameters accordingly.<br/>
+
+<br/>
+4) Thermodynamic Integration:<br/>
+   In this step the final value for the vibrational free energy assosicated with the ideal structure str.in is calculated. In the parent directory (where the input files are located) run the following:<br/>
+   <code>
+   mcmc -fvib
+    </code>
+    <br/>
+   which produces a file called "fvib" in the parent directory with the final value for the vibrational free energy.<br/>  
+<br/>
+Note: In step 3, 3' and 4, be cuatious that you have to specify the value for -T, otherwise the default value is used. Passing the -T option to "mcmc -r" does not mean that the same -T is passed to "mcmc -fvib" automatically. Also the value passed by -c should be the same for all calculations in step 3 and 4. <br/>
+<br/>
+Note: Aside from the vibrational free energy of an unstable system, this module can be used to get the average internal energy of the real system confined to its Voronoi cell. This option is invoked by passing the -u option to mcmc as "mcmc -r -u" in the parent directory or any directory where all the input files are present. The test option is also available for -u option as "mcmc -test -u". Any value of temperature can be passed by the -T option. This feature is useful to obtain the vibrational free energy at temperatures other than the one where fvib is calculated according to the thermodynamic relation "d(F/T)/d(1/T) = u". Refer to https://journals.aps.org/prb/abstract/10.1103/PhysRevB.95.064101 for more details. <br/>
+
+<br/>
+Guidelines for determination of maximum step size for mcmc:<br/>
+------------------------------------------------------------------------------<br/>
+The statistical analysis of each mcmc run is reported in the mcmc.log file. The value reported as
+"The acceptance ratio for this MC calculation" is a good indication of the qualitiy of mixing. Very small values indicate poor mixing. As a rule of thumb, a value close to 0.5 is optimum. However, in mcmc runs confined to some domain, these values are smaller than unconstrained sampling (compare values in lambda-*/ and ratio_ref/ for example). One can experiment with -ss value to obtain an optimum mixing. The smaller step size associates with more accepted states. However, very small step size that lead to acceptance ratio larger than 0.5 are considered inefficient. <br/>
+
+<br/>
+Guidelines for determination of curvature for reference potential energy:<br/>
+--------------------------------------------------------------------------------------------<br/>
+One good value for a refernece potentail energy quadratic curvature is the average of eigenvalues of the hessian of the real system. However, the ratio of the states inside Voronoi cell to the total mcmc states should not be less than 0.5 for computation purposes (otherwise large errors occur as the log value of this ratio is inclued in the final fvib value). One can experiment with different -c values in the ratio_ref/ directory to find the smallest possible value that assures a ratio higher than 0.5.<br/>
+                            
+                                                                                          
+                                                                                                                     
+                                                                                                                                                
+                                                                                                                                                                           
+                                                                                                                                                                                                                                 
+                                </section>
+								
+						</div>
+					</div>
+				</div>
+			</section>
+			
+		<!-- Footer -->
+			<footer id="footer">
+								<span class="copyright">
+					&copy; Copyright. Computational Materials Research Lab (CMRL). <!-- Design by <a target="_blank" href="http://www.html5webtemplates.co.uk">Responsive Web Templates</a> -->
+				</span>
+			</footer>
+
+	</body>
+</html>

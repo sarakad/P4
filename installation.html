@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title> </title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/jquery.scrollgress.min.js"></script>
+		<script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/jquery.slidertron.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-xlarge.css" />
+		</noscript>
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</head>
+    
+	<body>
+
+		<!-- Header -->
+		        <header id="header" >
+				<h1><a href="index.html">Kadkhodaei's Research Group at University of Illinois at Chicago (UIC)<span></span> </a></h1> <!--by Html5webtemplates.co.uk-->
+				
+		</header>
+        
+        <header class="majorcenter">
+					<h2>Piecewise Polynomial Potential Partitioning (P<sup>4</sup>)</h2>  
+            
+				</header>
+
+
+		<!-- Main -->
+			<section id="main" class="wrapper style1">
+			
+				<div class="container">
+					<div class="row 150%">
+						<div class="3u 12u$(2)">
+						
+							<!-- Sidebar -->
+								<section id="sidebar">
+									<section>
+                                        
+                                            <ul class="alt">
+                                                <li> <a href="download.html">Download</a></li>
+                                                <li> <a href="acknowledge.html">Acknowledgement and Citation</a></li>
+                                                <li> <a href="license.html">License and Agreements</a></li>
+                                                <li> <a href="installation.html"> Installation</a></li>
+                                                <li> <a href="p4.html">Tutorial</a></li>
+
+                                                <li><a href=""> Manual pages</a>
+                                                    <ul class="alt">
+                                                        <li><a href="auglatman.html"> auglat</a></li>
+                                                        <li><a href="genrndstrman.html"> genrndstr</a></li>
+                                                        <li><a href="vcminman.html"> vcminimizer</a></li>
+                                                        <li><a href="vcvaspman.html"> vcrelax_vasp</a></li>
+                                                        <li><a href="mcmcman.html"> mcmc</a></li>
+                                                    </ul>
+                                                </li>
+                                                 <li><a href=""> Command line options</a>
+                                                    <ul class="alt">
+                                                        <li><a href="auglatcommand.html"> auglat</a></li>
+                                                        <li><a href="genrndstrcommand.html"> genrndstr</a></li>
+                                                        <li><a href="vcmincommand.html"> vcminimizer</a></li>
+                                                        <li><a href="vcvaspcommand.html"> vcrelax_vasp</a></li>
+                                                        <li><a href="mcmccommand.html"> mcmc</a></li>
+                                                    </ul>
+                                                 </li>
+                                            </ul>
+									</section>
+								</section>
+
+						</div>
+						<div class="9u 12u$(2) important(2)">
+						
+							<!-- Content -->
+								<section id="content">
+                                    <h2>Installation </h2>	
+                                    <p>The P<sup>4</sup> code is a collection of C++ codes and shell scripts that need to be built into the ATAT toolkit.</p>
+
+                                    <p>Please refer to <a target="_blank" href="https://www.brown.edu/Departments/Engineering/Labs/avdw/atat/"> ATAT website </a> to download and install the ATAT toolkit before installing P<sup>4</sup>.</p>
+                                    <p>After downloading the package, type: </p>
+                                    <code>
+                                    gunzip p4_x.xx.tar.gz</code><br/>
+                                    <code>tar -xvf p4_x.xx.tar.gz
+                                    </code><br/>
+                                    <p>where x.xx is the current version number. These commands create a directory called p4 in the current directory. It contains the whole package. For future reference, I'll call the path to this directory p4 and the path to the ATAT package directory atat.</p>
+                                    
+                                    <h2>Requirements </h2>
+                                    <p>You need the following utilities installed:</p>
+                                    <ul>
+                                    <li> g++ (GCC) 4.4.7 or later. Type g++ -version to verify this. This package can be downloaded from <a href="http://www.gnu.org/"> http://www.gnu.org/</a>.</li>
+                                    <li> An implementations of Message Passing Interface (MPI), like mpich (<a href="https://www.mpich.org/"> https://www.mpich.org/</a>), mvapich (<a href="http://mvapich.cse.ohio-state.edu/"> http://mvapich.cse.ohio-state.edu/</a>) or openmpi <a href="https://www.open-mpi.org/"> https://www.open-mpi.org/</a>.</li>
+                                    <li>GNU make (any version). Type make -version to verify this. On some systems this command may be called gmake or gnumake. This package can be downloaded from <a href="http://www.gnu.org/">http://www.gnu.org/</a> .</li>
+                                    <li> The Vienna Ab initio Simulation Package to interface with a first-priciples code. Read more at <a href="https://www.vasp.at/"> https://www.vasp.at/</a></li>
+                                    <li> The Alloy-Theoretic Automated Toolkit (ATAT) Package. Read more at <a href="https://www.brown.edu/Departments/Engineering/Labs/avdw/atat/manual/manual.html"> ATAT website</a></li>
+                                    </ul>
+
+                                    <h2>Building the P<sup>4</sup> code into ATAT</h2>
+
+                                    <p>To install, copy the files in p4/src into your atat/src directory. The file makefile is replaced, so back up the atat/src/makefile.</p>
+                                    <code>
+                                    cp p4/src/* atat/src/. 
+                                    </code><br/>
+                                    
+                                    <p>Copy the files in p4/glue/ into your atat/glue directory. The file makefile is replaced, so back up the atat/glue/vasp/makefile.</p>
+                                    <code>
+                                    cp p4/glue/vasp/* atat/glue/vasp/.
+                                    </code>
+                                    <p>Go to the src directory in atat </p>
+                                    <code>
+                                    cd atat/src 
+                                    </code><br/>
+                                    <p>and open the file makefile with a text editor and look for the line BINDIR=$(HOME)/bin/. Change $(HOME)/bin/ to point wherever you want to put the executables. Then type</p>
+                                    <code>
+                                    make
+                                    </code><br/>
+                                    <p>Similarly, go to the glue/vasp directory in atat </p>
+                                    <code>
+                                    cd atat/glue/vasp 
+                                    </code><br/>
+                                    <p>and open the file makefile with a text editor and look for the line BINDIR=$(HOME)/bin/. Change $(HOME)/bin/ to point wherever you want to put the executables. Then type</p>
+                                    <code>
+                                    make
+                                    </code>
+                           
+                                </section>
+								
+						</div>
+					</div>
+				</div>
+			</section>
+			
+		<!-- Footer -->
+			<footer id="footer">
+								<span class="copyright">
+					&copy; Copyright. Computational Materials Research Lab (CMRL). <!-- Design by <a target="_blank" href="http://www.html5webtemplates.co.uk">Responsive Web Templates</a> -->
+				</span>
+			</footer>
+
+	</body>
+</html>
